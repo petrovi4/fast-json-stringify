@@ -489,6 +489,7 @@ function refFinder (ref, schema, externalSchema) {
   // If external file
   if (ref[0]) {
     schema = externalSchema[ref[0]]
+    if (!schema) throw new Error(`$ref:${ref[0]} not found`)
 
     if (schema.$ref) {
       return refFinder(schema.$ref, schema, externalSchema)
